@@ -16,6 +16,46 @@
   Once you've implemented the logic, test your code by running
 */
 
-class Calculator {}
+class Calculator {
+  constructor() {
+    this.result = 0;
+  }
+
+  add (a) {
+    this.result += a;
+  }
+
+  subtract (a) {
+    this.result -= a;
+  }
+
+  multiply (a) {
+    this.result *= a;
+  }
+
+  divide (a) {
+    if(a==0) throw new Error('Cannot divide with 0')
+    this.result /= a;
+  }
+  
+  clear() {
+    this.result = 0;
+  }
+
+  getResult() {
+    return this.result;
+  }
+  
+  calculate(str) {
+    str = str.replace(/\s/g, '')
+    let validValues = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '+', '-', '*', '/', '(', ')', '.', '-']
+    for( let i=0; i<str.length; i++) {
+      if(!validValues.includes(str[i])) throw new Error('Invalid Input'); 
+    }
+    if(eval(str) == Infinity) throw new Error('divide by O error');
+    this.result = eval(str);
+
+  }
+}
 
 module.exports = Calculator;
